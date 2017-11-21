@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Modelo Javascript</title>
+</head>
+<body>
+	<h4>Clique no botão</h4>
+	<button type="button" onclick="showMensagem()">Click</button>
+	<button type="button" onclick="printMsg()">Click2</button>
+	<br><br>
+	<h4>Mostrar o que está sendo digitado
+	<input type="text" name="texto" onkeypress="document.getElementById('msg').innerHTML = this.value;">
+	<div id="msg"></div>
+</body>
+<script type="text/javascript">
+	function showMensagem() {
+		alert("Hello world!!!");
+	}
+
+	function printMsg(){
+		var div = document.getElementById("msg");
+		div.innerHTML = "Você acaba de preencher essa DIV";
+	}
+</script>
+</html>
