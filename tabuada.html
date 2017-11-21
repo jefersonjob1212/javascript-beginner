@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Exemplo tabuada</title>
+</head>
+<body>
+<h4>Digite um número: </h4>
+<input type="text" name="numero"/> <button type="button" onclick="gerarTabuada(document.getElementsByName('numero')[0].value)">Gerar Tabuada</button>
+<div id="resultado"></div>
+</body>
+<script type="text/javascript">
+	function gerarTabuada(numero) {
+		var resultado = 0;
+		var msg = "";
+		for (i = 1; i <= 10; i++)
+		{
+			resultado = numero * i;
+
+			//pode ser desse jeito
+			msg = msg + numero + " X " + i + " = " + resultado + "<br>";
+
+			//ou assim vai dar certo também. Você escolhe. 
+			//Para usar, descomente esse e comente o de cima, ou vice-versa para usar o anterior
+			//msg += numero + " X " + i + " = " + resultado + "<br>";
+		}
+
+		document.getElementById("resultado").innerHTML = msg;
+	}
+</script>
+</html>
