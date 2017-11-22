@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Exemplo IF ELSE</title>
+</head>
+<body>
+	<h4><label>Digite um número</label></h4>
+	<!-- Nesse campo eu atribui um ID (identificador) para que na função eu consiga pegar o valor. -->
+	<input type="text" id="numero"/>
+	<!-- Nesse botão eu chamei a função via onclick. -->
+	<button type="button" onclick="verDivisivelPor2()">Verificar</button>
+</body>
+<script type="text/javascript">
+	//Criei essa função para verificar se o número informado é divisível por dois.
+	function verDivisivelPor2() {
+		//Eu declarei uma variável para receber o número que eu digitei no campo input.
+		//O valor eu pego através de um id (identificador) que eu coloquei no campo input
+		//O método getElementById da classe document pega o componente HTML que tem esse id.
+		//Ao pegar o elemento, eu consigo pegar o valor dele através do atributo "value"
+		var numero = document.getElementById('numero').value;
+
+
+		//Antes de prosseguir, vamos relembrar os operadores matemáticos e de comparação:
+		/*Operadores matemáticos
+		  + adição
+		  - subtração
+		  * multiplicação
+		  / divisão
+		  % resto da divisão
+		  = igual
+		*/
+
+		/*
+		 No IF ou em uma estrutura WHILE, usamos os operadores da tabela verdade para uma CONDIÇÃO
+		 == igual
+		 != diferente
+		 > maior
+		 >= maior ou igual
+		 < menor
+		 <= menor ou igual
+
+		 No exemplo a seguir, teremos um exemplo de valor IGUAL (==)
+		*/
+		
+		//if significa "Se". A primeira condição verifica se o número que eu digitei no campo é divisível por 2.
+		//Para isso, eu verifico se o resto da divisão por 2 é igual a 0.
+		//Eu pego a variável numero e coloco a porcentagem, depois número dois e dois sinais de iguais, para saber
+		//se o resultado da operação é igual a zero.
+		//Se não for igual a zero, ele vai para o ELSE.
+		//ELSE siginifica SENÃO. Então, a gente lê esse trecho assim:
+		//"Se o resto da divisão do valor da variável numero por 2 é igual a zero, ele vai mostrar uma mensagem de que o número é divisível por 2."
+		//"Senão, ele vai mostrar uma mensagem de que o número NÃO é divisível por 2."
+		if(numero % 2 == 0)
+		{
+			document.write(numero + " é divisível por 2");
+		}
+		else
+		{
+			document.write(numero + " não é divisível por 2");
+		}
+	}
+</script>
+</html>
