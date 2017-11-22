@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Jogo da Memória
+	</title>
+</head>
+<body>
+	<img border="1" src="assets/images/fundo.png" id="img1" width="300px" height="300px" onclick="showImage(document.getElementById('img1'));">
+	<img border="1" src="assets/images/fundo.png" id="img2" width="300px" height="300px" onclick="showImage(document.getElementById('img2'));">
+	<br>
+	<img border="1" src="assets/images/fundo.png" id="img3" width="300px" height="300px" onclick="showImage(document.getElementById('img3'));">
+	<img border="1" src="assets/images/fundo.png" id="img4" width="300px" height="300px" onclick="showImage(document.getElementById('img4'));">
+</body>
+<script type="text/javascript">
+	var imgBefore = "";
+	var idImgBefore = "";
+	var imgDefault = "assets/images/fundo.png";
+
+	function showImage(img) {
+		
+		var idImg = img.id;
+		var dirImg = '';
+		if(idImg == 'img1' || idImg == 'img4')
+			dirImg = 'assets/images/plus.png';
+		else
+			dirImg = 'assets/images/ball.png';
+
+		img.src = dirImg;
+
+		if(imgBefore == "")
+		{
+			imgBefore = dirImg;
+			idImgBefore = idImg;
+		}
+
+		else
+		{
+			if(dirImg != imgBefore)
+			{
+				document.getElementById(idImgBefore).src = imgDefault;
+				document.getElementById(idImg).src  = imgDefault;
+			}
+			imgBefore = "";
+			idImgBefore = "";
+		}
+	}
+</script>
+</html>
