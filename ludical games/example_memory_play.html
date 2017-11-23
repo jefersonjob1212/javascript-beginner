@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>
-		Jogo da Memória
+		Jogo da Mem&oacute;ria
 	</title>
 </head>
 <body>
@@ -13,36 +13,46 @@
 	<img border="1" src="assets/images/fundo.png" id="img4" width="300px" height="300px" onclick="showImage(document.getElementById('img4'));">
 </body>
 <script type="text/javascript">
-	var imgBefore = "";
-	var idImgBefore = "";
-	var imgDefault = "assets/images/fundo.png";
+	//Aqui eu declarei variáveis que serão utilizadas na tela. 
+	//Como serão utilizadas mais de uma vez, elas precisam ser global, ou seja, ser acessível em qualquer lugar a qualquer momento
+	var imagemAnterior = "";
+	var idImagemAnterior = "";
+	var imagemPadrao = "assets/images/fundo.png";
 
-	function showImage(img) {
+	//Essa função é que vai fazer toda a operação de mostrar a imagem e ver se está correta a imagem selecionada.
+	//Ela recebe como parâmetro o componente imagem para poder fazer toda a operação
+	function showImage(imagem) {
 		
-		var idImg = img.id;
-		var dirImg = '';
-		if(idImg == 'img1' || idImg == 'img4')
-			dirImg = 'assets/images/plus.png';
+		//Aqui eu pego o identificador da imagem
+		var identificadorImagem = imagem.id;
+
+		var diretorioImagem = '';
+		
+		//Verifico qual imagem eu selecionei
+		if(identificadorImagem == 'img1' || identificadorImagem == 'img4')
+			diretorioImagem = 'assets/images/plus.png';
 		else
-			dirImg = 'assets/images/ball.png';
+			diretorioImagem = 'assets/images/ball.png';
 
-		img.src = dirImg;
+		//Aqui eu defino qual imagem vai aparecer naquele quadro
+		imagem.src = diretorioImagem;
 
-		if(imgBefore == "")
+		
+		if(imagemAnterior == "")
 		{
-			imgBefore = dirImg;
-			idImgBefore = idImg;
+			imagemAnterior = diretorioImagem;
+			idImagemAnterior = identificadorImagem;
 		}
 
 		else
 		{
-			if(dirImg != imgBefore)
+			if(diretorioImagem != imagemAnterior)
 			{
-				document.getElementById(idImgBefore).src = imgDefault;
-				document.getElementById(idImg).src  = imgDefault;
+				document.getElementById(idImagemAnterior).src = imagemPadrao;
+				document.getElementById(identificadorImagem).src  = imagemPadrao;
 			}
-			imgBefore = "";
-			idImgBefore = "";
+			imagemAnterior = "";
+			idImagemAnterior = "";
 		}
 	}
 </script>

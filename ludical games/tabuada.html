@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Exemplo tabuada</title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+	//Declarei essa variável para salvar o resultado
+	var resultado = 0;
+	
+	//Aqui eu faço dois for:
+	//O primeiro é de quem vai ser a tabuada
+	//O segundo é o que vai multiplicar
+	//Exemplo: quando i for igual a i, o j vai do 1 ao 10, multiplicando i
+	/*
+		i
+			i * 1
+			i * 2
+			...
+			i * 10
+		até i chegar a 10
+	*/
+	for (i = 1; i <= 10; i++)
+	{
+		for (j =  1; j <= 10; j++) {
+			resultado = i * j;
+			document.write(i + " X " + j + " = " + resultado + " | ");
+		}
+	}
+</script>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Exemplo DO WHILE</title>
+</head>
+<body>
+	Escolha uma opção:<br>
+	1 - Cadastrar <br>
+	5 - Encerrar <br>
+	<input type='text' id='opcao' maxlength="1" />
+	<button id="btn" onclick="teste()">Acessar</button>
+</body>
+<script type="text/javascript">
+	var opcao;
+	function teste() {
+		opcao = parseInt(document.getElementById('opcao').value);
+		do
+		{
+			if(opcao == 1)
+			{
+				document.write("Aqui Cadastra");
+			}
+			else if(opcao == 5)
+			{
+				document.write("Aqui encerra");
+			}
+		}
+		while(opcao < 5);
+	}
+</script>
+</html>

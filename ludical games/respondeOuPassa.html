@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Questionário</title>
+</head>
+<body>
+	<button onclick="comecarJogo()">Começar!</button><br>
+	<div id="questao"></div>
+</body>
+<script type="text/javascript">
+	var contaAcertos = 0;
+	var contaErros = 0;
+	function comecarJogo() {
+		mostraPergunta1();
+		setTimeout(encerrarJogo, 30000);
+	}
+	function encerrarJogo() {
+		var inputs = document.getElementsByTagName('input');
+		for (var i = 0; i < inputs.length; i++) {
+			inputs[i].disabled = 'disabled';
+		}
+		alert('Tempo Esgotado!');
+		document.getElementById('questao').innerHTML = '<p>Acertos: ' + contaAcertos + '</p>';
+		document.getElementById('questao').innerHTML += '<p>Erros: ' + contaErros + '</p>';
+		contaAcertos = 0;
+		contaErros = 0;
+	}
+
+	function mostraPergunta1() {
+		document.getElementById('questao').innerHTML = '<label>1) Quanto é 2 + 2?</label><br>';
+		document.getElementById('questao').innerHTML += '<input type="text" id="resposta1"/>';
+		document.getElementById('questao').innerHTML += '<button onclick="verResposta1()">Responder</button>';
+		document.getElementById('questao').innerHTML += '<p id="msg"></p>';
+	}
+
+	function verResposta1() {
+		var i = parseInt(document.getElementById('resposta1').value);
+		if(i == 4)
+		{
+			contaAcertos = contaAcertos + 1;
+			document.getElementById('msg').innerHTML += '<p id="p">Parabéns você acertou!</p>';
+			mostraPergunta2();
+		}
+		else
+		{
+			contaErros = contaErros + 1;
+			document.getElementById('msg').innerHTML += '<p>Errado! Tente novamente</p>';	
+		}
+	}
+
+	function mostraPergunta2() {
+		document.getElementById('questao').innerHTML = '<label>2) Qual é a Capital da Itália?</label><br>';
+		document.getElementById('questao').innerHTML += '<input type="text" id="resposta2"/>';
+		document.getElementById('questao').innerHTML += '<button onclick="verResposta2()">Responder</button>';
+		document.getElementById('questao').innerHTML += '<p id="msg"></p>';
+	}
+
+	function verResposta2() {
+		var i = document.getElementById('resposta2').value;
+		if(i == "Roma" || i == "ROMA")
+		{
+			contaAcertos = contaAcertos + 1;
+			document.getElementById('msg').innerHTML = 'Parabéns você acertou!';
+			encerrarJogo();
+			
+		}
+		else
+		{
+			contaErros = contaErros + 1;
+			document.getElementById('msg').innerHTML = 'Errado! Tente novamente!';	
+		}
+	}
+</script>
+</html>
