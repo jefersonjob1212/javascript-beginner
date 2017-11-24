@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Util</title>
+</head>
+<body>
+	<p>Escreva seu nome</p>
+	<input type="text" id="texto">
+	<button onclick="mostraMensagem()">Clique aqui</button>
+</body>
+<script type="text/javascript" src="Util.js"></script>
+<script type="text/javascript">
+	function mostraMensagem() {
+		var comp = Util.getElementoPorID("texto");
+		Util.mostraMensagem("Bem vindo "+comp.value);
+	}
+</script>
+</html>
