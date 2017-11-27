@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Exercício 3</title>
+</head>
+<body>
+	<p>
+		<label>
+			Nome do produto:
+			<input type="text" id="nome">
+		</label>
+	</p>
+	<p>
+		<label>
+			Valor do produto:
+			<input type="text" id="valor">
+		</label>
+	</p>
+	<p>
+		<label>
+			Quantidade:
+			<input type="text" id="quantidade">
+		</label>
+	</p>
+	<p>
+		<label>
+			Percentual de desconto:
+			<input type="text" id="percentual">
+		</label>
+	</p>
+	<p>
+		<button onclick="mostrarProduto()">Calcular</button>
+	</p>
+	<p id="res"></p>
+</body>
+<script src="Util.js" type="text/javascript"></script>
+<script type="text/javascript">
+	function mostrarProduto() {
+		var nome = Util.getValue("nome");
+		var valor = Util.getFloat("valor");
+		var quantidade = Util.getInt("quantidade");
+		var percentual = Util.getFloat("percentual");
+
+		var total = valor * quantidade;
+		var desconto = Math.round(total 
+			* (percentual / 100));
+		total = total - desconto;
+		Util.addHTML("res", "Valor a ser pago: R$ " 
+			+ total + "<br> Desconto concedido: R$ " 
+			+ desconto);
+	}
+</script>
+</html>
