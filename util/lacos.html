@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Exercício 7 - Interface Classe Laços</title>
+</head>
+<body>
+	<div id="opcoes">
+		<button onclick="showDivOpcao(1);">Números de 0 a n</button>
+		<button onclick="showDivOpcao(2);">Somatório de 0 a n</button>
+		<button onclick="showDivOpcao(3);">Média de m a n</button>
+		<button onclick="showDivOpcao(4);">Pares e múltiplos de 6</button>
+	</div>
+	<div id="interval" style="display: none;">
+		<label>
+			Digita um número
+			<input type="text" id="num">
+		</label>
+		<p>
+			<button onclick="returnAllNumber()">Processar</button>
+		</p>
+	</div>
+	<div id="sum" style="display: none;">
+		<label>
+			Digita um número
+			<input type="text" id="numero">
+		</label>
+		<p>
+			<button onclick="returnSoma()">Processar</button>
+		</p>
+	</div>
+	<div id="media" style="display: none;">
+		<label>
+			Primeiro número
+			<input type="text" id="numero1">
+		</label>
+		<label>
+			Último número
+			<input type="text" id="numero2">
+		</label>
+		<p>
+			<button onclick="returnMedia()">Processar</button>
+		</p>
+	</div>
+	<div id="multiplos" style="display: none;">
+		<label>
+			Primeiro número
+			<input type="text" id="start">
+		</label>
+		<label>
+			Último número
+			<input type="text" id="end">
+		</label>
+		<p>
+			<button onclick="returnMultiplos()">Processar</button>
+		</p>
+	</div>
+	<p id="msg"></p>
+</body>
+<script src="Lacos.js" type="text/javascript"></script>
+<script src="Util.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+	var resultado = "";
+	var div1 = Util.getElement("interval");
+	var div2 = Util.getElement("sum");
+	var div3 = Util.getElement("media");
+	var div4 = Util.getElement("multiplos");
+
+	function showDivOpcao(opcao) {
+		Util.addHTML("msg", "");
+		switch(opcao)
+		{
+			case 1:
+			{
+				div1.style.display = "block";
+				div2.style.display = "none";
+				div3.style.display = "none";
+				div4.style.display = "none";
+				break;
+			}
+
+			case 2:
+			{
+				div1.style.display = "none";
+				div2.style.display = "block";
+				div3.style.display = "none";
+				div4.style.display = "none";
+				break;
+			}
+
+			case 3:
+			{
+				div1.style.display = "none";
+				div2.style.display = "none";
+				div3.style.display = "block";
+				div4.style.display = "none";
+				break;
+			}
+
+			case 4:
+			{
+				div1.style.display = "none";
+				div2.style.display = "none";
+				div3.style.display = "none";
+				div4.style.display = "block";
+				break;
+			}
+		}
+	}
+
+	function returnAllNumber() {
+		var num = Util.getInt("num");
+		resultado = Lacos.allNumbersString(num);
+		
+		Util.addHTML("msg", resultado);		
+	}
+
+	function returnSoma() {
+		var num = Util.getInt("numero");
+		resultado = Lacos.sumNumber(num);
+		
+		Util.addHTML("msg", resultado);		
+	}
+
+	function returnMedia() {
+		var num1 = Util.getInt("numero1");
+		var num2 = Util.getInt("numero2");
+
+		resultado = Lacos.media(num1, num2);
+
+		Util.addHTML("msg", resultado);
+	}
+
+	function returnMultiplos() {
+		var num1 = Util.getInt("start");
+		var num2 = Util.getInt("end");
+
+		resultado = Lacos.multipleSix(num1, num2);
+
+		Util.addHTML("msg", resultado);
+	}
+</script>
+</html>
