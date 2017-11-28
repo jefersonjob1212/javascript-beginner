@@ -49,11 +49,11 @@ class Valida
 
 	static isLengthThis(string, value)
 	{
-		return string.length == value;
+		return string.length >= value;
 	}
 
 	static isNumberAt(num, start, end)
 	{
-		return num > start && num < end;
+		return num >= start && num <= end;
 	}
 }

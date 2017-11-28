@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Exercício 5</title>
+</head>
+<body>
+	<label>
+		Nome do produto:
+		<input type="text" id="nome">
+	</label><br>
+	<label>
+		Valor:
+		<input type="text" id="valor">
+	</label><br>
+	<label>
+		Quantidade:
+		<input type="text" id="quantidade">
+	</label><br>
+	<label>
+		Desconto (%):
+		<input type="text" id="desconto">
+	</label><br>
+	<label>
+		Quantidade de parcelas:
+		<input type="text" id="parcelas">
+	</label><br>
+	<button onclick="finalizarProduto()">Finalizar</button>
+	<hr>
+	<p id="msg"></p>
+</body>
+<script src="Util.js" type="text/javascript"></script>
+<script src="Valida.js" type="text/javascript"></script>
+<script type="text/javascript">
+	
+	function finalizarProduto() {
+		var nome = Util.getValue("nome");
+		var valor = Util.getFloat("valor");
+		var quantidade = Util.getInt("quantidade");
+		var desconto = Util.getFloat("desconto");
+		var parcelas = Util.getInt("parcelas");
+
+		if(Valida.isNull(nome)){
+			alert("Preencha o campo nome");
+			return;
+		}
+
+		if(Valida.isNull(valor)){
+			alert("Preencha o campo valor");
+			return;
+		}
+
+		if(Valida.isNull(quantidade)){
+			alert("Preencha o campo quantidade");
+			return;
+		}
+
+		if(Valida.isNull(desconto)){
+			alert("Preencha o campo desconto");
+			return;
+		}
+
+		if(!Valida.isLengthThis(nome, 3)){
+			alert("Nome tem que ter mais que 3 caracteres");
+			return;
+		}
+
+		if(Valida.isNegative(valor)){
+			alert("Valor não pode ser negativo");
+			return;
+		}
+
+		if(!Valida.isNumeric(valor)){
+			alert("O valor tem que ter somente números");
+			return;
+		}
+
+		if(!Valida.isInteger(quantidade)){
+			alert("Quantidade deve ser número inteiro");
+			return;
+		}
+
+		if(!Valida.isNumeric(desconto))
+		{
+			alert("Desconto deve ser número");
+			return;
+		}
+
+		if(!Valida.isNumeric(parcelas))
+		{
+			alert("Parcelas deve ser número");
+			return;
+		}
+
+		if(!Valida.isNumberAt(quantidade, 1,12))
+		{
+			alert("Quantidade deve estar entre 1 e 12");
+			return;		
+		}
+
+		if(!Valida.isNumberAt(desconto, 1,100))
+		{
+			alert("Desconto deve estar entre 1 e 100");	
+			return;	
+		}
+
+		var valorTotal = valor * (desconto / 100);
+		var msg = "Total: " + valor;
+		msg += "<br>Percentual de desconto: " + Math.round(desconto) + "%";
+		msg += "<br>Parcelas: " + parcelas;
+		msg += "<br>Total a pagar: " + Math.round(valor - valorTotal) + "<br>";
+
+		var valorParcela = valor / parcelas;
+
+		for (var i = 1; i <= parcelas; i++) {
+			msg += "Parcela " + i + " - R$ " + Math.round(valorParcela) + "<br>";
+		}
+
+		Util.addHTML("msg", msg);
+	}
+
+</script>
+</html>
