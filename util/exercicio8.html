@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<label>
+		Digite o mês:
+		<input type="text" id="mes">
+	</label>
+	<br>
+	<button onclick="mostraCalendario()">Mostrar</button>
+	<table id="tab" border="1" style="display: none;">
+		<tr>
+			<th>D</th>
+			<th>S</th>
+			<th>T</th>
+			<th>Q</th>
+			<th>Q</th>
+			<th>S</th>
+			<th>S</th>
+		</tr>
+		<tr id="calendario">
+		</tr>
+	</table>
+</body>
+<script type="text/javascript">
+	function mostraCalendario() {
+		var mes = parseInt(document.getElementById('mes').value);
+		var data = new Date();
+		data.setMonth(mes-1);
+		data.setDate(1);
+
+		document.getElementById('tab').style.display = 'block';
+
+		var linhas = document.getElementById('calendario');
+
+		var lastDay = new Date(data.getFullYear(), data.getMonth(), 0);
+
+		for(var i = data.getDate(); i <= lastDay.getDate(); i++)
+		{
+			var d = new Date(2017, data.getMonth(), i);
+			var diaSemana = d.getDay();
+
+			
+		}
+	}
+</script>
+</html>
