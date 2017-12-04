@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ativdade 2.1</title>
+</head>
+<body>
+    <p>
+        <label>
+            Digite o nome de uma pessoa: 
+            <input type="text" id="nome">
+        </label>
+    </p>
+    <p>
+        <label>
+            Digite a idade da pessoa: 
+            <input type="text" id="idade">
+        </label>
+    </p>
+    <p>
+        <button onclick="verMaisVelho()">Ver quem é mais velho</button>
+    </p>
+    <p id="resultado"></p>
+</body>
+<script type="text/javascript">
+    var nome = "";
+    var nomeAux = "";
+    var idade = 0;
+    var idadeAux = 0;
+    var campoNome = document.getElementById('nome');
+    var campoIdade = document.getElementById('idade');
+    var resultado = document.getElementById('resultado');
+    function verMaisVelho() {
+        nomeAux = campoNome.value;
+        idadeAux = parseInt(campoIdade.value);
+        
+        if(nome == "" && idade == 0)
+        {
+            nome = nomeAux;
+            idade = idadeAux;
+            campoNome.value = "";
+            campoIdade.value = "";
+        }
+
+        else if(idade > idadeAux)
+        {
+            resultado.innerHTML = nome + " é mais velho que " + nomeAux;
+        }
+
+        else
+            resultado.innerHTML = nomeAux + " é mais velho que " + nome;
+    }
+
+</script>
+</html>

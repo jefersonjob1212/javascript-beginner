@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Atividade 3 - Outro Exemplo</title>
+</head>
+<body>
+	<h3>Mostre o dia que você nasceu</h3>
+	<p>
+		<label>
+			Dia
+			<select id="dia">
+			</select> 
+		</label>
+	</p>
+	<p>
+		<label>
+			Mês
+			<select id="mes">
+			</select> 
+		</label>
+	</p>
+	<p>
+		<label>
+			Ano
+			<select id="ano">
+			</select> 
+		</label>
+	</p>
+	<button onclick="mostraDataNascimento()">Mostrar data</button>
+	<p>
+		<label id="mostra"></label>
+	</p>
+</body>
+<script type="text/javascript">
+
+	var dia = document.getElementById('dia');
+	var mes = document.getElementById('mes');
+	var ano = document.getElementById('ano');
+	var mostra = document.getElementById('mostra');
+
+	window.onload = function () {
+		for (var i = 1; i <= 31; i++) {
+			dia.innerHTML += '<option value ="' + i + '">' + i + '</option>'
+		}
+
+		for (var i = 1; i <= 12; i++) {
+			mes.innerHTML += '<option value ="' + i + '">' + i + '</option>'
+		}
+
+		for (var i = 2000; i >= 1950; i--) {
+			ano.innerHTML += '<option value ="' + i + '">' + i + '</option>'
+		}
+	};
+
+	function mostraDataNascimento() {
+		var diaNascimento = parseInt(dia.value);
+		var mesNascimento = parseInt(mes.value);
+		var anoNascimento = parseInt(ano.value);
+
+		var dataNascimento = new Date(anoNascimento, mesNascimento-1, diaNascimento);
+
+		var dataAtual = new Date();
+
+		var mesAtual = dataAtual.getMonth();
+
+		var diaAtual = dataAtual.getDate();
+
+		var diferenca = dataAtual.getFullYear() - dataNascimento.getFullYear();
+
+		if(mesAtual+1 < mesNascimento || (mesAtual+1 == mesNascimento && diaNascimento > diaAtual))
+			diferenca = diferenca - 1;
+
+		mostra.innerHTML = "Data de Nascimento: " + dia.value + "/" + mes.value + "/" + ano.value;
+		mostra.innerHTML += "<br>Idade: " + diferenca + " anos";
+		if(diferenca >= 18)
+			mostra.innerHTML += "<br>É maior de idade";
+		else
+			mostra.innerHTML += "<br>É menor de idade";
+	}
+</script>
+</html>

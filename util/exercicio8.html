@@ -10,40 +10,82 @@
 	</label>
 	<br>
 	<button onclick="mostraCalendario()">Mostrar</button>
-	<table id="tab" border="1" style="display: none;">
-		<tr>
-			<th>D</th>
-			<th>S</th>
-			<th>T</th>
-			<th>Q</th>
-			<th>Q</th>
-			<th>S</th>
-			<th>S</th>
-		</tr>
-		<tr id="calendario">
-		</tr>
-	</table>
+	<p id="calendario"></p>
 </body>
 <script type="text/javascript">
 	function mostraCalendario() {
-		var mes = parseInt(document.getElementById('mes').value);
-		var data = new Date();
-		data.setMonth(mes-1);
-		data.setDate(1);
+		var day_of_week = new Array('D','S','T','Q','Q','S','S');
+   		var month_of_year = new Array('Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro');
+   		 
+   		var calendario = new Date();
+   		 
+   		var year = calendario.getFullYear();       // Retorna o ano
+   		var month = calendario.getMonth();    // Retorna mes (0-11)
+   		var today = calendario.getDate();     // Retorna dias (1-31)
+   		var weekday = calendario.getDay();   // Retorna dias (1-31)
+   		 
+   		var DAYS_OF_WEEK = 7;    // "constant" para o numero de dias na semana
+   		var DAYS_OF_MONTH = 31;    // "constant" para o numero de dias no mes
+   		var cal;    // Usado para imprimir na tela
 
-		document.getElementById('tab').style.display = 'block';
-
-		var linhas = document.getElementById('calendario');
-
-		var lastDay = new Date(data.getFullYear(), data.getMonth(), 0);
-
-		for(var i = data.getDate(); i <= lastDay.getDate(); i++)
-		{
-			var d = new Date(2017, data.getMonth(), i);
-			var diaSemana = d.getDay();
-
-			
-		}
+   		var mes = parseInt(document.getElementById('mes').value);
+   		 
+   		calendario.setDate(1);    // Comecar o calendario no dia '1'
+   		calendario.setMonth(mes-1);    // Comecar o calendario com o mes atual
+   		 
+   		 
+   		var TR_start = '<TR>';
+   		var TR_end = '</TR>';
+   		var highlight_start = '<TD WIDTH="30"><TABLE CELLSPACING=0 BORDER=1 BGCOLOR=DEDEFF BORDERCOLOR=CCCCCC><TR><TD WIDTH=20><B><CENTER>';
+   		var highlight_end   = '</CENTER></TD></TR></TABLE></B>';
+   		var TD_start = '<TD WIDTH="30"><CENTER>';
+   		var TD_end = '</CENTER></TD>';
+   		 
+   		cal =  '<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=0 BORDERCOLOR=BBBBBB><TR><TD>';
+   		cal += '<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=2>' + TR_start;
+   		cal += '<TD COLSPAN="' + DAYS_OF_WEEK + '" BGCOLOR="#EFEFEF"><CENTER><B>';
+   		cal += month_of_year[mes-1]  + '   ' + year + '</B>' + TD_end + TR_end;
+   		cal += TR_start;
+   		 
+   		for(index=0; index < DAYS_OF_WEEK; index++)
+   		{
+   		 
+   		  if(weekday == index && month == calendario.getMonth())
+   		    cal += TD_start + '<B>' + day_of_week[index] + '</B>' + TD_end;
+   		  else
+   		    cal += TD_start + day_of_week[index] + TD_end;
+   		}
+   		 
+   		cal += TD_end + TR_end;
+   		cal += TR_start;
+   		 
+   		for(index=0; index < calendario.getDay(); index++)
+   		  cal += TD_start + '  ' + TD_end;
+   		 
+   		for(index=0; index < DAYS_OF_MONTH; index++)
+   		{
+   		  if( calendario.getDate() > index )
+   		  {
+   		    week_day =calendario.getDay();
+   		    if(week_day == 0)
+   		      cal += TR_start;
+   		    if(week_day != DAYS_OF_WEEK)
+   		    {
+   		      var day  = calendario.getDate();
+   		      if(today==calendario.getDate() && month==calendario.getMonth())
+   		        cal += highlight_start + day + highlight_end + TD_end;
+   		      else
+   		        cal += TD_start + day + TD_end;
+   		      }
+   		      if(week_day == DAYS_OF_WEEK)
+   		        cal += TR_end;
+   		  }
+   		  calendario.setDate(calendario.getDate()+1);
+   		}
+   		cal += '</TD></TR></TABLE></TABLE>';
+   		 
+   		//  MOSTRAR CALENDARIO
+   		document.getElementById("calendario").innerHTML = cal;
 	}
 </script>
 </html>
