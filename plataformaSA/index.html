@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Jogo matemático</title>
+	<script type="text/javascript" src="util.js"></script>
+</head>
+<body>
+	<p>
+		<button onclick="iniciarJogo()">Iniciar</button>
+		<button onclick="sorteiaNumeroOperacao()">Teste sorteio</button>
+	</p>
+	<p>
+		<input type="text" id="num1" disabled="disabled" />
+		<input type="text" id="operacao" disabled="disabled">
+		<input type="text" id="num2" disabled="disabled">
+		<input type="text" id="resposta" onkeyup="verResposta()">
+	</p>
+	<hr/>
+	<table id="ranking" border="1" cellspacing="0">
+		<tr>
+			<th>
+				Posição
+			</th>
+			<th>
+				Nome
+			</th>
+			<th>
+				Acertos
+			</th>
+			<th>
+				Erros
+			</th>
+		</tr>
+	</table>
+</body>
+<script type="text/javascript">
+
+	var numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+	//var nomes = [];
+	//var resultadoAcerto = [];
+	//var resultadoErro = [];
+	var listaPessoas = [];
+	var pessoa = [];
+	var id = 0;
+	var contaAcertos = 0;
+	var contaErros = 0;
+	var operacoes = ['+', '-', 'x', '÷']; //para fazer o símbolo da divisão, digita Alt + 246
+
+	var numeroSorteado = 0;
+	var operacaoSorteada = 0;
+
+	var inputNum1 = Util.getElement('num1');
+	var inputNum2 = Util.getElement('num2');
+	var inputOperacao = Util.getElement('operacao');
+	var inputResposta = Util.getElement('resposta');
+
+	function iniciarJogo() {
+		setTimeout(encerrarJogo, 10000);
+		sorteiaNumeroOperacao();
+	}
+
+	function sorteiaNumeroOperacao()
+	{
+		numeroSorteado = Math.floor(Math.random() * 11);
+		inputNum1.value = numeros[numeroSorteado];
+
+		numeroSorteado = Math.floor(Math.random() * 11);
+		inputNum2.value = numeros[numeroSorteado];
+
+		operacaoSorteada = Math.floor(Math.random() * 4);
+		inputOperacao.value = operacoes[operacaoSorteada];
+	}
+
+	function verResposta() {
+		var num1Valor = Util.getInt('num1');
+		var num2Valor = Util.getInt('num2');
+		var operacaoValor = Util.getInt('operacao');
+		var respostaValor = Util.getInt('resposta');
+		var calculoCerto = 0;
+
+		if (event.getCode == 13) 
+		{
+			if(operacaoValor == "+")
+			{
+				calculoCerto = num1Valor + num2Valor;
+			}
+
+			else if(operacaoValor == "-")
+			{
+				calculoCerto = num1Valor - num2Valor;	
+			}
+
+			else if(operacaoValor == "x")
+			{
+				calculoCerto = num1Valor * num2Valor;
+			}
+
+			else 
+			{
+				calculoCerto = num1Valor / num2Valor;
+			}
+
+			if(respostaValor == calculoCerto)
+			{
+				contaAcertos = contaAcertos + 1;
+				sorteiaNumeroOperacao();
+			}
+
+			else
+			{
+				contaErros = contaErros + 1;
+			}
+		}
+	}
+
+	function encerrarJogo() {
+		id = id + 1;
+		var tamanhoVetorNomes = listaPessoas.length;
+		var nome = prompt("Tempo Esgotado!!!\nPreencha seu nome: ");
+		pessoa = {"id":id, "nome": nome, "acertos": contaAcertos, "erros": contaErros};
+		listaPessoas[id - 1] = pessoa;
+
+		Util.addHtml('ranking', gerarLinhaRanking());
+	}
+
+	function gerarLinhaRanking() {
+		var linha = "<tr>";
+		for (var i = 0; i < listaPessoas.length; i++) {
+			linha += "<td>"+listaPessoas[i].id+"</td>";
+			linha += "<td>"+listaPessoas[i].nome+"</td>";
+			linha += "<td>"+listaPessoas[i].acertos+"</td>";
+			linha += "<td>"+listaPessoas[i].erros+"</td>";
+		}
+		return linha;
+	}
+</script>
+</html>
